@@ -1,0 +1,75 @@
+---
+# This default profile is used when running a single instance completely standalone:
+spring:
+  profiles: default
+  application:
+    name: default-discoveryserver   # ==> This is Service-Id 
+server:
+  port: 9000  
+eureka:
+  instance:
+    hostname: my-eureka-server.com
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/    
+ 
+# united-states, france, and vietnam illustrate running 3 intercommunicating instances.  
+# This example has them running side-by-side on localhost
+# -- which is unrealistic in production
+# -- but does illustrate how multiple instances collaborate.
+#
+# Run by opening 3 separate command prompts:
+# java -jar -Dspring.profiles.active=united-states SpringCloudServiceRegistrationEurekaServer.jar
+# java -jar -Dspring.profiles.active=france SpringCloudServiceRegistrationEurekaServer.jar
+# java -jar -Dspring.profiles.active=vietnam SpringCloudServiceRegistrationEurekaServer.jar
+
+---
+spring:
+  profiles: united-states
+  application:
+    name: eureka-server-clustered   # ==> This is Service-Id
+server:
+  port: 9001  
+eureka:
+  instance:
+    hostname: my-eureka-server-us.com    
+  client:
+    registerWithEureka: true
+    fetchRegistry: true       
+    serviceUrl:
+      defaultZone: http://my-eureka-server-fr.com:9002/eureka/,http://my-eureka-server-vn.com:9003/eureka/
+ 
+---
+spring:
+  profiles: france
+  application:
+    name: eureka-server-clustered   # ==> This is Service-Id   
+server:
+  port: 9002
+eureka:
+  instance:
+    hostname: my-eureka-server-fr.com      
+  client:
+    registerWithEureka: true
+    fetchRegistry: true       
+    serviceUrl:
+      defaultZone: http://my-eureka-server-us.com:9001/eureka/,http://my-eureka-server-vn.com:9003/eureka/
+ 
+---
+spring:
+  profiles: vietnam
+  application:
+    name: eureka-server-clustered    # ==> This is Service-Id  
+server:
+  port: 9003
+eureka:
+  instance:
+    hostname: my-eureka-server-vn.com    
+  client:
+    registerWithEureka: true
+    fetchRegistry: true   
+    serviceUrl:
+      defaultZone: http://my-eureka-server-us.com:9001/eureka/,http://my-eureka-server-fr.com:9002/eureka/   
+      

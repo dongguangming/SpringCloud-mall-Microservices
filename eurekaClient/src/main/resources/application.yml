@@ -1,0 +1,84 @@
+spring:
+  application:
+    name: ABC-SERVICE # ==> This is Service-Id
+     
+ 
+---
+# Items that apply to ALL profiles:   
+eureka:
+  instance:
+    appname: ABC-SERVICE  # ==> This is a instance of ABC-SERVICE
+  client:   
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://my-eureka-server.com:9000/eureka
+#      defaultZone: http://my-eureka-server-us.com:9001/eureka
+#      defaultZone: http://my-eureka-server-fr.com:9002/eureka
+#      defaultZone: http://my-eureka-server-vn.com:9003/eureka
+server:
+  port: 8000  
+  
+---
+spring:
+  profiles: abc-service-replica01
+eureka:
+  instance:
+    appname: ABC-SERVICE  # ==> This is a instance of ABC-SERVICE
+  client:   
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://my-eureka-server.com:9000/eureka  
+server:
+  port: 8001   
+     
+---
+spring:
+  profiles: abc-service-replica02
+eureka:
+  instance:
+    appname: ABC-SERVICE  # ==> This is a instance of ABC-SERVICE
+  client:   
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://my-eureka-server.com:9000/eureka    
+server:
+  port: 8002
+  
+---
+spring:
+  profiles: abc-service-replica03
+eureka:
+  instance:
+    appname: ABC-SERVICE  # ==> This is a instance of ABC-SERVICE
+  client:   
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://my-eureka-server.com:9000/eureka    
+server:
+  port: 8003
+  
+---
+spring:
+  profiles: abc-service-replica04
+eureka:
+  instance:
+    appname: ABC-SERVICE  # ==> This is a instance of ABC-SERVICE
+  client:   
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://my-eureka-server.com:9000/eureka    
+server:
+  port: 8004  
+  
+---
+spring:
+  profiles: abc-service-replica05
+eureka:
+  instance:
+    appname: ABC-SERVICE  # ==> This is a instance of ABC-SERVICE
+  client:   
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://my-eureka-server.com:9000/eureka    
+server:
+  port: 8005

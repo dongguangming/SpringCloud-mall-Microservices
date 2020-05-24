@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: USER-GATEWAY
+  
+server:
+  port: 7777
+ 
+# -- Configure for Ribbon:
+  
+ping-server:
+  ribbon:
+    eureka:
+      enabled: false # Disable Default Ping
+    listOfServers: localhost:9997,localhost:9998,localhost:9999
+    ServerListRefreshInterval: 15000
+     
+# -- Configure Discovery Client (Eureka Client).    
+# Configure this application to known "Service Registration".
+ 
+eureka:
+  instance:
+    appname: USER-GATEWAY  # ==> This is an instance of XYZ-SERVICE
+  client:   
+    fetchRegistry: true
+    serviceUrl:
+       defaultZone: http://my-eureka-server.com:9000/eureka
+#      defaultZone: http://my-eureka-server-us.com:9001/eureka
+#      defaultZone: http://my-eureka-server-fr.com:9002/eureka
+#      defaultZone: http://my-eureka-server-vn.com:9003/eureka  
