@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.mall</groupId>
+	<artifactId>SpringCloud-mall-Microservices</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<!--注意打包方式为 pom -->
 	<packaging>pom</packaging>
@@ -23,12 +23,11 @@
 		<module>userService</module>
 	</modules>
 
-	<name>demo</name>
+	<name>SpringCloud-mall-Microservices</name>
 	<description>SpringCloud-mall-Microservices project for Spring Cloud</description>
-	<url>https://github.com/dongguangming/</url>
+	<url>https://github.com/dongguangming/SpringCloud-mall-Microservices</url>
 
 	<!-- FIXME change it to the project's website -->
-
 	<properties>
 		<project.version>0.0.1-SNAPSHOT</project.version>
 		<java.version>1.8</java.version>
@@ -36,9 +35,11 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<spring.version>5.2.6</spring.version>
+		<spring-boot.version>2.3.0.RELEASE</spring-boot.version>
 		<!-- https://spring.io/blog/2020/04/17/spring-cloud-2020-0-0-m1-released -->
 		<spring-cloud.version>Hoxton.SR4</spring-cloud.version>
 		<aspectjweaver.version>1.9.5</aspectjweaver.version>
+		
 		<mysql.version>5.1.47</mysql.version>
 		<druid.version>1.1.22</druid.version>
 		<mybatis.version>3.5.4</mybatis.version>
@@ -46,27 +47,23 @@
 		<mapper.version>3.3.6</mapper.version>
 		<tk.mybatis.mapper.version>1.2.4</tk.mybatis.mapper.version>
 		<pagehelper.version>1.2.13</pagehelper.version>
+		<mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
+
 		<guava.version>29.0-jre</guava.version>
 		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
 		<springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
+		<knife4j.version>2.0.2</knife4j.version>
+		
 		<boot.artifact.name>bootstrap-${project.version}</boot.artifact.name>
 		<assembly.name>spring-boot-plus-server-${project.version}</assembly.name>
 		<admin.artifact.name>admin-${project.version}</admin.artifact.name>
 		<admin.assembly.name>admin-${project.version}</admin.assembly.name>
 		<spring-boot-admin.version>2.2.2</spring-boot-admin.version>
-		<mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
 		<velocity.version>2.2</velocity.version>
-		<commons-lang3.version>3.9</commons-lang3.version>
-		<commons-collections4.version>4.4</commons-collections4.version>
-		<commons-io.version>2.6</commons-io.version>
-		<commons-codec.version>1.14</commons-codec.version>
-		<commons-net.version>3.6</commons-net.version>
-		<commons-pool2.version>2.8.0</commons-pool2.version>
-		<commons-text.version>1.8</commons-text.version>
+
 		<fastjson.version>1.2.67</fastjson.version>
-		<mysql.version>5.1.47</mysql.version>
-		<reflections.version>0.9.9</reflections.version>
 		<jansi.version>1.18</jansi.version>
+		<reflections.version>0.9.9</reflections.version>
 		<lombok.version>1.18.12</lombok.version>
 		<hutool.version>5.2.4</hutool.version>
 		<junit.version>4.12</junit.version>
@@ -74,10 +71,15 @@
 		<mapstruct.version>1.3.1.Final</mapstruct.version>
 		<shiro.version>1.5.3</shiro.version>
 		<jwt.version>3.10.1</jwt.version>
-		<guava.version>28.2-jre</guava.version>
 		<snakeyaml.version>1.26</snakeyaml.version>
-		<swagger2.version>2.9.2</swagger2.version>
-		<knife4j.version>2.0.2</knife4j.version>
+
+		<commons-lang3.version>3.9</commons-lang3.version>
+		<commons-collections4.version>4.4</commons-collections4.version>
+		<commons-io.version>2.6</commons-io.version>
+		<commons-codec.version>1.14</commons-codec.version>
+		<commons-net.version>3.6</commons-net.version>
+		<commons-pool2.version>2.8.0</commons-pool2.version>
+		<commons-text.version>1.8</commons-text.version>
 
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
@@ -87,6 +89,7 @@
 		<maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
 
 	</properties>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -158,14 +161,6 @@
 			</dependency>
 			<!-- spring-boot end -->
 
-			<!-- mybatis-plus begin -->
-			<dependency>
-				<groupId>com.baomidou</groupId>
-				<artifactId>mybatis-plus-boot-starter</artifactId>
-				<version>${mybatis-plus-boot-starter.version}</version>
-			</dependency>
-			<!-- mybatis-plus end -->
-
 			<!-- MySQL -->
 			<dependency>
 				<groupId>mysql</groupId>
@@ -173,16 +168,24 @@
 				<version>${mysql.version}</version>
 			</dependency>
 
+            <!-- mybatis-plus begin -->
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis-plus-boot-starter.version}</version>
+			</dependency>
+			<!-- mybatis-plus end -->
+			
 			<!-- swagger start -->
 			<dependency>
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger2</artifactId>
-				<version>${swagger2.version}</version>
+				<version>${springfox-swagger2.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger-ui</artifactId>
-				<version>${swagger2.version}</version>
+				<version>${springfox-swagger-ui.version}</version>
 			</dependency>
 			<!-- swagger end -->
 
@@ -446,7 +449,6 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -461,6 +463,17 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
